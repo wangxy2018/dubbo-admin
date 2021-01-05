@@ -33,13 +33,12 @@
 1. 下载代码: `git clone https://github.com/apache/dubbo-admin.git`
 2. 在 `dubbo-admin-server/src/main/resources/application.properties`中指定注册中心地址
 3. 构建
-
     > - `mvn clean package`  
 4. 启动 
    * `mvn --projects dubbo-admin-server spring-boot:run`   
    或者   
    * `cd dubbo-admin-distribution/target; java -jar dubbo-admin-0.1.jar`
-5. 访问 `http://localhost:8080`
+5. 访问 `http://localhost:8180`
 ---
 
 ### 开发环境配置
@@ -48,8 +47,15 @@
 * 运行`dubbo admin ui`
   `dubbo admin ui`由npm管理和构建，在开发环境中，可以单独运行: `npm run dev`
 * 页面访问
-  访问 `http://localhost:8081`, 由于前后端分开部署，前端支持热加载，任何页面的修改都可以实时反馈，不需要重启应用。
+  访问 `http://localhost:8082`, 由于前后端分开部署，前端支持热加载，任何页面的修改都可以实时反馈，不需要重启应用。
 
 ### Swagger 支持
 
-部署完成后，可以访问 http://localhost:8080/swagger-ui.html 来查看所有的restful api
+部署完成后，可以访问 http://localhost:8180/swagger-ui.html 来查看所有的restful api
+
+### 注意：
+配置文件里面默认的用户名密码 root/root, 如果不想用登陆功能加上如下配置即可
+admin.check.authority=false
+
+前端启动：
+进入dubbo-admin-ui目录，执行npm install, 然后执行npm run dev

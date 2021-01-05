@@ -33,6 +33,7 @@ import java.lang.reflect.Method;
 public class AuthInterceptor extends HandlerInterceptorAdapter {
     @Value("${admin.check.authority:true}")
     private boolean checkAuthority;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (!(handler instanceof HandlerMethod) || !checkAuthority) {
@@ -42,7 +43,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         Method method = handlerMethod.getMethod();
         Authority authority = method.getDeclaredAnnotation(Authority.class);
         if (null == authority) {
-            authority = method.getDeclaringClass().getDeclaredAnnotation(Authority.class);
+            authority = method.getDeclaringClass().getDeclaredAnnotation(Authority.class);  // 通过方法找到对应的类
         }
         if (null != authority && authority.needLogin()) {
             String authorization = request.getHeader("Authorization");
